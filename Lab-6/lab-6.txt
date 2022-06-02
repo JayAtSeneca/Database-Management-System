@@ -1,0 +1,147 @@
+2.) CREATE TABLE newCustomers(
+CUSTOMERNMBER NUMBER(38,0) PRIMARY KEY,
+CUSTOMERNAME  VARCHAR(50),
+CONTACTLASTNAME VARCHAR(50),
+CONTACTFIRSTNAME VARCHAR(50),
+PHONE VARCHAR(50),
+ADDRESSLINE1 VARCHAR(50),
+ADDRESSLINE2 VARCHAR(50) NULL,
+CITY VARCHAR(50),  
+STATE VARCHAR(50) NULL,
+POSTALCODE VARCHAR(15) NULL,
+COUNTRY VARCHAR(50),
+SALESREPEMPLOYEENUMBER NUMBER(38,0) NULL,
+CREDITLIMIT  NUMBER(10,2)
+);
+ 
+3.) SET AUTCOMMIT OFF;
+SET TRANSACTION READ WRITE;
+
+4.) INSERT ALL
+INTO newCustomers
+VALUES(100,NULL,'Patel','Ralph',2233355555,'10 SenecaWay',NULL,'Paris',NULL,Null,'France',null,null)
+INTO newCustomers
+VALUES(101,null,'Denis','Betty', 3344455555,'110 SenecaWay',null,'Chicago',null,null,'USA',null,null)
+INTO newCustomers
+VALUES(102,null,'Biri','Ben', 44555445544 ,'13000 SenecaWay',null, 'Toronto',null,null, 'Canada',null,null)
+INTO newCustomers
+VALUES(103,null,'Newman','Chad', 66777332233,'12 SenecaWay',null,'Mexico city',null,null,'Mexico',null,null)
+INTO newCustomers
+VALUES(104,null,'Ropeburn','Audrey', 7788811212,'15000 SenecaWay' ,null,'Havana',null,null,'Cuba',null,null)
+SELECT *FROM DUAL;
+COMMIT;
+
+5.) 
+SELECT COUNT (*) FROM newCustomers;
+
+6.) 
+ROLLBACK;
+SELECT COUNT (*) FROM newCustomers;
+
+7.) 
+INSERT ALL
+INTO newCustomers
+VALUES(100,NULL,'Patel','Ralph',2233355555,'10 SenecaWay',NULL,'Paris',NULL,Null,'France',null,null)
+INTO newCustomers
+VALUES(101,null,'Denis','Betty', 3344455555,'110 SenecaWay',null,'Chicago',null,null,'USA',null,null)
+INTO newCustomers
+VALUES(102,null,'Biri','Ben', 44555445544 ,'13000 SenecaWay',null, 'Toronto',null,null, 'Canada',null,null)
+INTO newCustomers
+VALUES(103,null,'Newman','Chad', 66777332233,'12 SenecaWay',null,'Mexico city',null,null,'Mexico',null,null)
+INTO newCustomers
+VALUES(104,null,'Ropeburn','Audrey', 7788811212,'15000 SenecaWay' ,null,'Havana',null,null,'Cuba',null,null)
+SELECT *FROM DUAL;
+COMMIT;SELECT * FROM newCustomers;
+SELECT COUNT(*) FROM newCustomers;
+
+
+8.)
+UPDATE newCustomers SET addressLine1 = 'unknown';
+
+9.) 
+SELECT * FROM newCustomers; 
+COMMIT;
+
+10.) 
+ROLLBACK;
+
+a.) 
+SELECT *FROM newCustomers
+WHERE addressLine1 = ‘unKnown’;
+
+b.) 
+SELECT *FROM newCustomers
+WHERE addressLine1 = ‘unKnown’;
+ 
+0 row updates
+
+11.) 
+SET TRANSACTION READ WRITE;
+DELETE FROM newCustomers;
+
+12.) 
+CREATE VIEW vwNewCusts
+AS
+SELECT * FROM newCustomers
+ORDER BY CONTACTLASTNAME, CONTACTFIRSTNAME;
+
+13.) 
+ROLLBACK;
+
+a.) 
+SELECT *FROM newCustomer;
+
+14.) 
+SET TRANSACTION READ WRITE;
+	       INSERT ALL
+INTO newCustomers
+VALUES(100,NULL,'Patel','Ralph',2233355555,'10 SenecaWay',NULL,'Paris',NULL,Null,'France',null,null)
+INTO newCustomers
+VALUES(101,null,'Denis','Betty', 3344455555,'110 SenecaWay',null,'Chicago',null,null,'USA',null,null)
+INTO newCustomers
+VALUES(102,null,'Biri','Ben', 44555445544 ,'13000 SenecaWay',null, 'Toronto',null,null, 'Canada',null,null)
+INTO newCustomers
+VALUES(103,null,'Newman','Chad', 66777332233,'12 SenecaWay',null,'Mexico city',null,null,'Mexico',null,null)
+INTO newCustomers
+VALUES(104,null,'Ropeburn','Audrey', 7788811212,'15000 SenecaWay' ,null,'Havana',null,null,'Cuba',null,null)
+SELECT *FROM DUAL;
+SELECT * FROM  newCustomers;
+
+15.) 
+SAVEPOINT insertion;
+
+16.) 
+UPDATE newCustomers SET addressLine1 = ‘unknown’;
+SELECT *FROM newCustomers;
+
+17.)
+ROLLBACK TO insertion;
+SELECT * 
+FROM newCustomers;
+
+18.) 
+ROLLBACK;
+SELECT *
+FROM newCustomers;
+
+19.) 
+REVOKE ALL ON newCustomers
+FROM PUBLIC;
+
+20.)
+GRANT READ ON newCustomers
+TO dbs211_221f06;
+
+21.) 
+GRANT INSERT,
+UPDATE,
+DELETE ON newCustomers TO dbs211_221f27;
+
+22.) 
+REVOKE ALL ON newCustomers
+FROM dbs211_221f06; 
+
+23.) 
+DROP VIEW vwNewCusts;
+DROP TABLE newCustomers;
+

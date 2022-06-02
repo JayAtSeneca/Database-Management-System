@@ -1,0 +1,108 @@
+// question - 1
+SELECT * FROM payments
+FETCH FIRST 10 ROWS ONLY
+
+// question - 2 
+1.) way
+SELECT (lastname||firstname||email) AS FULLNAME FROM Employees
+WHERE officecode=6;
+
+2.) way 
+SELECT firstname,lastname,email FROM employees
+WHERE officecode=6;
+
+// question -3 
+SELECT customerNumber, customername, contactfirstname, contactlastname, phone
+FROM customers
+WHERE city = 'Paris'
+ORDER BY customerNumber; 
+
+//question-4
+
+
+
+
+//question-5
+
+
+
+//question-6
+SELECT customernumber,checknumber,amount FROM payments
+WHERE amount NOT BETWEEN 30000 AND 65000
+ORDER BY amount DESC;
+
+//question - 7
+SELECT * FROM ORDERS
+WHERE LOWER(status)='cancelled'
+
+// question - 8
+SELECT productcode,productname,msrp, buyprice,msrp-buyprice
+AS markup, round(((msrp-buyprice)/buyprice)*100,1) as percmarkup FROM PRODUCTS;
+
+// question - 9
+SELECT * FROM products
+WHERE LOWER(productname) LIKE '%co%'
+
+//Question - 10
+SELECT customername FROM customers
+WHERE LOWER(contactfirstname) LIKE 's%e%';
+
+//Question - 11
+INSERT INTO employees
+(employeenumber,lastname,firstname,email,extension,officecode,reportsto,jobtitle)
+VALUES
+(0770,'shah','yash','yvshah@myseneca.ca','x8777',4,1088,'Cashier')
+
+//Question - 12
+SELECT * FROM employees
+WHERE lastname='shah';
+
+//Question - 13
+
+
+//Question - 14
+INSERT INTO employees
+(employeenumber,lastname,firstname,email,extension,officecode,reportsto,jobtitle)
+VALUES
+(8967,'kane','jackson','kj23@email.com','x8777',5,0770,'Cashier');
+
+
+//Question - 15
+Due to integrity constraint
+
+//Question - 16
+DELETE FROM employees
+WHERE employeenumber=8967;
+DELETE FROM employees
+WHERE employeenumber=0770;
+
+it works
+
+//Question - 17
+INSERT INTO employees
+(employeenumber,lastname,firstname,email,extension,officecode,reportsto,jobtitle)
+VALUES
+(0770,'shah','yash','yvshah@myseneca.ca','x8777',4,1088,'Head Cashier');
+
+
+
+INSERT INTO employees
+(employeenumber,lastname,firstname,email,extension,officecode,reportsto,jobtitle)
+VALUES
+(8967,'kane','jackson','kj23@email.com','x8777',5,1088,'Cashier');
+
+//Question - 18
+
+
+//Question - 19
+The general syntax for inserting a single row of data into a table is as follows: INSERT INTO Table_Name VALUES(vaule_1, value_2, ..., value_N)
+
+ANSWER 19
+
+The required command to insert the data is INSERT INTO ORDERS VALUES (10316, '17-09-21', '20-09-21', '18-09-21', 'Shipped', 'Customer received the order')
+
+The command required to show the new data inserted into the database is by using the SELECT statement and the ORDERNUMBER of the new order (10316). The command is SELECT * FROM ORDERS WHERE ORDERNUMBER=10316
+
+ANSWER 20
+
+The required command is INSERT INTO PRODUCTS VALUES ('S111_111', '2020 Bugatti Veyron', 'Sports Car', '1:24', 'Carousel DieCast Legends', 'The fastest supercar in the world!')

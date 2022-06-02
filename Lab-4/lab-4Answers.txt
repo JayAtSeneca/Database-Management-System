@@ -1,0 +1,106 @@
+
+// question - 1
+SELECT teamid, teamname, fieldname, address
+FROM gameteams INNER JOIN teamfields
+ON gameteams.homefield = teamfields.fieldname
+WHERE LOWER(gameteams.shirtcolor) = 'white';
+
+// Question -2
+SELECT teamid, teamname, firstname, lastname
+FROM gameteams RIGHT OUTER JOIN teamplayers
+USING (teamid);
+
+//Question - 3
+A.) SELECT employeenumber, firstname, lastname, city, phone, postalcode
+FROM offices, employees
+WHERE employees.officecode = offices.officecode
+AND LOWER (offices.country) LIKE 'france';
+
+B.)
+SELECT employeenumber,firstname, lastname, city, phone, postalcode
+FROM offices INNER JOIN employees
+ON employees.officecode = offices.officecode
+WHERE LOWER (offices.country) LIKE 'france';
+
+//Question - 4
+
+SELECT C.customernumber, C.customername, TO_CHAR(p.paymentdate,'MON
+DD,YYYY')paymentdate, P.amount
+FROM payments P INNER JOIN customers C
+ON P.customernumber = C.customernumber
+AND LOWER(C.country) LIKE 'canada'
+ORDER BY customernumber;
+
+// Question - 5
+SELECT customernumber,customername
+FROM customers FULL OUTER JOIN payments USING (customernumber)
+WHERE payments.amount IS NULL AND LOWER (customers.country) LIKE 'usa'
+ORDER BY customernumber DESC;
+
+//Question - 6
+
+Create view vwcustomerorder
+AS
+Select
+orders.customernumber,
+orders.ordernumber,
+orders.orderdate,
+products.productname,
+orderdetails.quantityordered,
+orderdetails.priceeach
+from orders
+Join orderdetails on orders.ordernumber = orderdetails.ordernumber
+join products on orderdetails.productcode = products.productcode;
+
+B.) 
+SELECT * FROM vwcustomerorder;
+
+
+
+// Question - 7
+
+SELECT DISTINCT
+customernumber,
+orderlinenumber,
+vwcustomerorder.ordernumber
+FROM
+vwcustomerorder
+INNER JOIN orderdetails ON vwcustomerorder.ordernumber= orderdetails.ordernumber
+WHERE
+customernumber =124
+ORDER BY
+ordernumber,
+orderlinenumber;
+
+// Question - 8
+
+SELECT DISTINCT(customers.customernumber), customername, contactfirstname, contactlastname, phone, creditlimit
+FROM customers LEFT OUTER JOIN orders ON customers.customernumber = orders.customernumber;
+
+// Question - 9
+CREATE VIEW vwemployeemanager AS
+SELECT
+employ.employeenumber,
+employ.lastname,
+employ.firstname,
+employ.extension,
+employ.email,
+employ.officecode,
+employ.reportsto,
+employ.jobtitle,
+em.firstname AS managerfirst,
+em.lastname AS managerlast
+FROM employees employ
+INNER JOIN employees em ON employ.reportsto = em.employeenumber;
+
+
+// Question - 10
+
+CREATE OR REPLACE VIEW vwemployeemanager AS
+SELECT *
+FROM employees
+WHERE reportsto IS NOT NULL;
+
+// Question - 11
+DROP VIEW vwcustomerorder;
+DROP VIEW vwemployeemanager;
